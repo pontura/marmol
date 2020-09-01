@@ -1,8 +1,9 @@
-﻿ ﻿using UnityEngine;
- using System.Collections;
- using System.Collections.Generic;
- 
- public static class Utils {
+﻿﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.EventSystems;
+
+public static class Utils {
  
      public static void RemoveAllChildsIn(Transform container)
      {
@@ -89,5 +90,13 @@
         }
 
         return hashString.PadLeft(32, '0');
+    }
+    public static bool IsPointerOverUIObject()
+    {
+        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
+        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        List<RaycastResult> results = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
+        return results.Count > 1;
     }
 }
