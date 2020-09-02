@@ -10,17 +10,6 @@ public class PlacementController : MonoBehaviour
     [SerializeField]
     private GameObject placedPrefab;
 
-    public GameObject PlacedPrefab
-    {
-        get 
-        {
-            return placedPrefab;
-        }
-        set 
-        {
-            placedPrefab = value;
-        }
-    }
 
     private ARRaycastManager arRaycastManager;
 
@@ -46,11 +35,15 @@ public class PlacementController : MonoBehaviour
     {
         if(!TryGetTouchPosition(out Vector2 touchPosition))
             return;
+        bool isOver = Utils.IsPointerOverUIObject();
+        if (isOver)
+            return;
 
         if(arRaycastManager.Raycast(touchPosition, hits, UnityEngine.XR.ARSubsystems.TrackableType.PlaneWithinPolygon))
         {
             var hitPose = hits[0].pose;
-            Instantiate(placedPrefab, hitPose.position, hitPose.rotation);
+            // Instantiate(placedPrefab, hitPose.position, hitPose.rotation);
+            Events.OnAddAngle(hits[0].trackableId, hitPose.position, hitPose.rotation);
         }
     }
 
