@@ -17,6 +17,10 @@ public class AngleByGyroscope : MonoBehaviour
     {
         Input.gyro.enabled = true;
     }
+    public void Back()
+    {
+        Data.Instance.LoadLevel("0_Home");
+    }
     private void Update()
     {
         field2.text = Input.gyro.attitude.eulerAngles.ToString();

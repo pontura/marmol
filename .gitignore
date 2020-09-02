@@ -1,0 +1,13 @@
+
+src/ProjectSettings/XRPackageSettings.asset
+src/ProjectSettings/ProjectVersion.txt
+src/Packages/packages-lock.json
+src/Packages/manifest.json
+src/Logs/Packages-Update.log
+src/Assets/XR/Settings/AR Kit Loader Settings.asset.meta
+src/Assets/XR/Settings/AR Kit Loader Settings.asset
+src/Assets/XR/Settings.meta
+src/Assets/XR/Loaders/AR Kit Loader.asset.meta
+src/Assets/XR/Loaders/AR Kit Loader.asset
+src/Assets/XR/Loaders.meta
+src/Assets/XR.meta
