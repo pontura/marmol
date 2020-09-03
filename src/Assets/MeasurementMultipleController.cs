@@ -55,7 +55,6 @@ public class MeasurementMultipleController : MonoBehaviour
                 if (arRaycastManager.Raycast(touchPosition, hits, UnityEngine.XR.ARSubsystems.TrackableType.PlaneWithinPolygon))
                 {
                     AddPoint();
-                    activePoint.transform.localScale = Vector3.one;
                     Pose hitPose = hits[0].pose;
                     activePoint.transform.SetPositionAndRotation(hitPose.position, hitPose.rotation);
 
@@ -99,6 +98,8 @@ public class MeasurementMultipleController : MonoBehaviour
     void AddPoint()
     {
         activePoint = Instantiate(measurementPointPrefab, Vector3.zero, Quaternion.identity, container);
+        float _v = 0.1f;
+        activePoint.transform.localScale = new Vector3(_v, _v, _v);
         all.Add(activePoint);
     }
     string CalculateDistance()
