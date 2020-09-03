@@ -10,6 +10,10 @@ public class MainMenu : MonoBehaviour
     }
     public void Angles()
     {
-        Data.Instance.LoadLevel("AnglesGyroscope");
+        Data.Instance.LoadLevel("2_Angulos_gyro");
+    }
+    public void Dardos()
+    {
+        Data.Instance.LoadLevel("2_Dardos");
     }
 }

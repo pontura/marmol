@@ -28,7 +28,10 @@ public class AnglesDetector : MonoBehaviour
     {
         Events.OnAddAngle -= OnAddAngle;
     }
-
+    public void Back()
+    {
+        Data.Instance.LoadLevel("0_Home");
+    }
     public void ResetAngles()
     {
         Utils.RemoveAllChildsIn(container);

@@ -98,7 +98,7 @@ public class MeasurementMultipleController : MonoBehaviour
     void AddPoint()
     {
         activePoint = Instantiate(measurementPointPrefab, Vector3.zero, Quaternion.identity, container);
-        float _v = 0.1f;
+        float _v = 0.05f;
         activePoint.transform.localScale = new Vector3(_v, _v, _v);
         all.Add(activePoint);
     }
