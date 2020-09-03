@@ -8,6 +8,7 @@ using UnityEngine.UI;
 [RequireComponent(typeof(ARRaycastManager))]
 public class MeasurementMultipleController : MonoBehaviour
 {
+    public Toggle fixedHeight;
     public states state;
     public enum states
     {
@@ -31,6 +32,8 @@ public class MeasurementMultipleController : MonoBehaviour
     public List<GameObject> all;
     private Vector2 touchPosition = default;
     private static List<ARRaycastHit> hits = new List<ARRaycastHit>();
+    float fixedHeightValue;
+    GameObject activePoint;
 
     void Awake()
     {
@@ -42,16 +45,20 @@ public class MeasurementMultipleController : MonoBehaviour
     {
         Data.Instance.LoadLevel("0_Home");
     }
-    GameObject activePoint;
 
+    
     void Update()
     {
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Began)
-            {
-                touchPosition = touch.position;               
+            {   
+                touchPosition = touch.position;
+
+                if (all.Count == 0)
+                     fixedHeightValue = touch.position.y;
+
                 if (arRaycastManager.Raycast(touchPosition, hits, UnityEngine.XR.ARSubsystems.TrackableType.PlaneWithinPolygon))
                 {
                     AddPoint();
@@ -74,6 +81,7 @@ public class MeasurementMultipleController : MonoBehaviour
                     activePoint.SetActive(true);
 
                     Pose hitPose = hits[0].pose;
+                    hitPose.position.y = fixedHeightValue;
                     activePoint.transform.SetPositionAndRotation(hitPose.position, hitPose.rotation);
 
                     state = states.ACTIVE;
